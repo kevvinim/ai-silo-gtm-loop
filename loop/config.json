@@ -22,6 +22,11 @@
       "auto": false,
       "maxPostsPerDay": 1,
       "maxRepliesPerDay": 0
+    },
+    "community": {
+      "auto": false,
+      "maxPostsPerDay": 1,
+      "maxRepliesPerDay": 5
     }
   },
   "perRunMaxPerChannel": 2,
