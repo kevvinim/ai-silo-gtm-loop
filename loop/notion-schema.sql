@@ -12,6 +12,7 @@ CREATE TABLE (
   "Status" STATUS('Drafted':gray:to_do, 'Blocked':red:to_do, 'Posted':green:complete, 'Failed':orange:complete),
   "Gate notes" RICH_TEXT,
   "Posted URL" URL,
+  "Posted at" DATE,          -- set by the publish run (KST); the daily cap counts rows posted since 00:00 KST
   "Views" NUMBER,
   "Visitors" NUMBER,
   "Created" CREATED_TIME

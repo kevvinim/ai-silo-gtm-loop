@@ -7,18 +7,13 @@
 - Claude in Chrome: X와 Threads에 로그인된 상태
 
 ## 단계
-1. **게시할 행 고르기.** 아래 조건을 **모두** 만족하는 행만 고른다.
-   - Approved가 체크됨
-   - Status = Drafted
-   - Gate notes가 `PASS`로 시작함
-   - Channel이 x 또는 threads
-   - 정렬은 Created 오름차순
-2. **상한 확인(코드).** 후보 행을 `queue.json`으로, 오늘(KST) 이미 Posted인 행을 `posted.json`으로 저장한다. `node loop/check.js select queue.json posted.json`을 실행하고, 결과의 `publish` 목록만 게시하고 `prepare` 목록(LinkedIn)만 준비한다. 코드가 건너뛴 행(`skipped`)은 이유와 함께 Gate notes에 남긴다.
+1. **후보 모으기.** Approved가 체크된 행을 **채널과 상관없이 모두** 가져온다(LinkedIn 포함). 걸러 내는 일은 다음 단계의 코드가 한다.
+2. **상한 확인(코드).** 후보 행을 `queue.json`으로 저장한다. **Posted at**이 오늘 00:00 KST(UTC로는 전날 15:00) 이후인 행을 `posted.json`으로 저장한다. 없으면 `[]`이고, 이 파일을 빼먹으면 코드가 실행을 거부한다. `node loop/check.js select queue.json posted.json`을 실행하고, 결과의 `publish` 목록만 게시하고 `prepare` 목록(LinkedIn)만 준비한다. 코드가 건너뛴 행(`skipped`)은 이유와 함께 Gate notes에 남긴다.
 3. **게시.** 행마다 다음을 한다.
    - Text를 **글자 그대로** 붙인다. 고치지 않는다.
    - 게시물: X는 `https://x.com/compose/post`에서, Threads는 홈의 새 스레드 창에서 쓴다.
    - 답글: Reply to URL을 열고 그 글에 답한다.
-   - 게시 뒤 글의 URL을 확인해 Posted URL에 넣고 Status를 Posted로 바꾼다.
+   - 게시 뒤 글의 URL을 확인해 Posted URL에 넣고, **Posted at**에 지금 시각(KST)을 넣고, Status를 Posted로 바꾼다.
    - 다음 행동까지 20분 넘게 기다린다. 한 실행에서 채널당 최대 2건까지만 게시한다.
 4. **LinkedIn 행** (Approved, PASS):
    - `https://www.linkedin.com/feed/`에서 작성 창을 열고 Text를 채운 채 탭을 열어 둔다.
