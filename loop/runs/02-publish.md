@@ -13,7 +13,7 @@
    - Gate notes가 `PASS`로 시작함
    - Channel이 x 또는 threads
    - 정렬은 Created 오름차순
-2. **상한 확인.** 오늘(KST) 이미 Posted인 행을 세어 플레이북 상한을 넘지 않게 한다. 남은 몫만 게시한다.
+2. **상한 확인(코드).** 후보 행을 `queue.json`으로, 오늘(KST) 이미 Posted인 행을 `posted.json`으로 저장한다. `node loop/check.js select queue.json posted.json`을 실행하고, 결과의 `publish` 목록만 게시하고 `prepare` 목록(LinkedIn)만 준비한다. 코드가 건너뛴 행(`skipped`)은 이유와 함께 Gate notes에 남긴다.
 3. **게시.** 행마다 다음을 한다.
    - Text를 **글자 그대로** 붙인다. 고치지 않는다.
    - 게시물: X는 `https://x.com/compose/post`에서, Threads는 홈의 새 스레드 창에서 쓴다.

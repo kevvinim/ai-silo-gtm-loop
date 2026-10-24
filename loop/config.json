@@ -1,0 +1,50 @@
+{
+  "site": "https://ai-silo-check.vercel.app",
+  "ids": {
+    "notionPlaybookPage": "403c1586c46d8159b7d4ea1a7bcc0672",
+    "notionPostQueue": "collection://fdd1b185-2333-4075-9afb-ce5a5150bdc0",
+    "vercelProject": "prj_0yJJkkDLieiolFoaYeq8x9gxEuI7",
+    "vercelTeam": "team_Z2NwCqMwf9vd9bPjUlWnXi4Y"
+  },
+  "channels": {
+    "threads": { "auto": true, "maxPostsPerDay": 3, "maxRepliesPerDay": 5 },
+    "x": { "auto": true, "maxPostsPerDay": 3, "maxRepliesPerDay": 5, "maxWeightedLength": 280 },
+    "linkedin": { "auto": false, "maxPostsPerDay": 1, "maxRepliesPerDay": 0 }
+  },
+  "perRunMaxPerChannel": 2,
+  "minMinutesBetweenActions": 20,
+  "maxLinkedRepliesRatio": 0.34,
+  "angles": {
+    "A": {
+      "who": "5–50인 회사의 실무자와 팀 리드",
+      "quotes": [
+        { "text": "카톡으로 보고 다 했어요.", "source": "https://damoang.net/free/2240584", "date": "2024-12-02" }
+      ]
+    },
+    "B": {
+      "who": "일에 AI를 쓰는 사람들",
+      "quotes": [
+        { "text": "현장에서는 각자의 AI 활용법을 조용히 숨기고 있다.", "source": "https://wikidocs.net/blog/@jaehong/12956/", "date": "2026-05-07" }
+      ]
+    },
+    "C": {
+      "who": "대표와 운영 책임자",
+      "quotes": [
+        { "text": "일단 구독부터 결제합니다.", "source": "https://eopla.net/magazines/46731", "date": "2026-09-17" },
+        { "text": "한 달 뒤, 업무는 조금도 달라지지 않습니다.", "source": "https://eopla.net/magazines/46731", "date": "2026-09-17" }
+      ]
+    }
+  },
+  "startWeights": { "A": 40, "B": 35, "C": 25 },
+  "learning": { "minVisitorsPerPost": 5, "winnerMultiplier": 2, "dropAfterConsecutiveLastDays": 2 },
+  "bannedPatterns": [
+    { "id": "double-exclaim", "regex": "!!", "why": "과장·압박" },
+    { "id": "fire-emoji", "regex": "🔥", "why": "과장·압박" },
+    { "id": "fomo", "regex": "지금 안 하면|뒤처집니다|놓치면 후회", "why": "압박" },
+    { "id": "mention", "regex": "(^|[^\\w./])@[A-Za-z0-9_.]{2,}", "why": "소통한 적 없는 계정 태그" },
+    { "id": "launch-claim", "regex": "출시(했|됐|되었)|지금 바로 (가입|사용)|정식 오픈", "why": "제품 출시 주장" },
+    { "id": "hard-sell", "regex": "무조건|역대급|100% 보장", "why": "과장" }
+  ],
+  "quoteMinLength": 10,
+  "rulesCount": 10
+}

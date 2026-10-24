@@ -30,7 +30,9 @@
 5. **큐에 올리기.** 각 초안을 Post Queue에 한 행씩 추가한다.
    - 채울 칸: Draft(`d{일차} · 채널 · 앵글번호 · 짧은 제목`), Channel, Type, Angle, Text, Tagged link, Reply to URL(답글일 때), Day
    - Status는 Drafted로 둔다.
-6. **게이트.** 초안을 쓰지 않은 **별도 에이전트**에게 맡긴다.
+6. **게이트.** 두 겹으로 검사한다.
+   - **기계 검사(코드):** 오늘 행을 `drafts.json`으로 저장하고 `node loop/check.js gate drafts.json`을 실행한다. 링크 태그, X 길이, 금지 표현, 출처 없는 인용을 잡는다. 여기서 BLOCK이면 그대로 Blocked이고, 사람도 에이전트도 뒤집지 않는다.
+   - **판단 검사(에이전트):** 기계 검사를 통과한 행만 초안을 쓰지 않은 **별도 에이전트**에게 맡긴다.
    - 그 에이전트가 오늘 행을 플레이북 규칙으로 하나씩 검사한다.
    - 통과한 행은 Gate notes를 `PASS · 이유`로 쓴다.
    - 실패한 행은 Status를 Blocked로 바꾸고 Gate notes를 `BLOCK · 어긴 규칙과 해당 문구`로 쓴다.

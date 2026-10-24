@@ -1,0 +1,10 @@
+{
+  "name": "ai-silo-gtm-loop",
+  "private": true,
+  "description": "Agentic GTM loop for the AI silo diagnostic (hackathon)",
+  "scripts": {
+    "test": "node --test tests/loop.test.js",
+    "test:mutation": "node tests/mutation.js",
+    "test:page": "cd site && npm install && SITE_URL=https://ai-silo-check.vercel.app node build.js && cd .. && node tests/page-e2e.js"
+  }
+}
