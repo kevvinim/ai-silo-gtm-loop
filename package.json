@@ -5,6 +5,7 @@
   "scripts": {
     "test": "node --test tests/loop.test.js",
     "test:mutation": "node tests/mutation.js",
-    "test:page": "cd site && npm install && SITE_URL=https://ai-silo-check.vercel.app node build.js && cd .. && node tests/page-e2e.js"
+    "test:page": "cd site && npm install && SITE_URL=https://ai-silo-check.vercel.app node build.js && cd .. && node tests/page-e2e.js",
+    "test:x-length": "T=$(mktemp -d) && (cd $T && npm init -y >/dev/null && npm i twitter-text@3.1.0 --silent) && TT_DIR=$T node tests/x-length.check.js"
   }
 }
