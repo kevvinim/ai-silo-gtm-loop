@@ -27,6 +27,21 @@
       "auto": false,
       "maxPostsPerDay": 1,
       "maxRepliesPerDay": 5
+    },
+    "instagram": {
+      "auto": false,
+      "maxPostsPerDay": 1,
+      "maxRepliesPerDay": 0
+    },
+    "naverblog": {
+      "auto": false,
+      "maxPostsPerDay": 1,
+      "maxRepliesPerDay": 0
+    },
+    "brunch": {
+      "auto": false,
+      "maxPostsPerDay": 1,
+      "maxRepliesPerDay": 0
     }
   },
   "perRunMaxPerChannel": 2,
