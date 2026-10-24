@@ -11,7 +11,7 @@ const cfg = require("../loop/config.json");
 const L = require(process.env.LOOP_LIB || "../loop/lib.js"); // LOOP_LIB lets tests/mutation.js swap in a sabotaged copy
 
 const SITE = cfg.site;
-const link = (src, med, day, content) => `${SITE}/?utm_source=${src}&utm_medium=${med}&utm_campaign=d${day}&utm_content=${content}`;
+const link = (src, med, day, content) => `${SITE}/go/d${day}-${content}?utm_source=${src}&utm_medium=${med}&utm_campaign=d${day}&utm_content=${content}`;
 const draft = (o) => ({ day: 0, type: "post", ...o, taggedLink: o.taggedLink || (o.text.match(/https:\/\/[\x21-\x7e]+/) || [])[0] });
 const rules = (d) => L.gateMechanical(d, cfg).map((p) => p.rule);
 const blocks = (d, rule) => assert.ok(rules(d).includes(rule), `expected ${rule}, got [${rules(d)}] for: ${d.text.slice(0, 40)}`);
@@ -65,6 +65,10 @@ test("gate [review]: Hangul glued to a link is blocked (X would cut or reject it
 
 test("gate [review]: duplicate utm params are blocked", () => {
   blocks(draft({ channel: "x", angle: "B", text: `확인 ${link("x", "post", 0, "B9")}&utm_source=threads` }), "utm-duplicate");
+});
+
+test("gate: link path must carry the draft id (/go/d{day}-{id})", () => {
+  blocks(draft({ channel: "x", angle: "B", text: `확인\n${SITE}/?utm_source=x&utm_medium=post&utm_campaign=d0&utm_content=B9` }), "link-path");
 });
 
 test("gate: tag mismatches are blocked — source, medium, day, angle, Tagged link, channel", () => {

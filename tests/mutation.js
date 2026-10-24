@@ -29,6 +29,7 @@ const M = [
   ["skip our-site check", "if (!t || t.origin !== cfg.site)", "if (false)"],
   ["skip non-ASCII link check", R`if (/[^\x21-\x7e]/.test(l))`, "if (false)"],
   ["skip duplicate utm check", "if (t.dup.length)", "if (false)"],
+  ["skip link path check", "if (t.path !== `/go/d${draft.day}-${t.content}`)", "if (false)"],
   ["skip Tagged link match", "if (draft.taggedLink && l !== draft.taggedLink)", "if (false)"],
   ["skip utm_source check", "if (t.source !== draft.channel)", "if (false)"],
   ["skip utm_medium check", "if (t.medium !== draft.type)", "if (false)"],

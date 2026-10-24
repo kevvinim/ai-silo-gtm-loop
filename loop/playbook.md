@@ -15,9 +15,11 @@
 
 ## 링크 태그 (모든 링크)
 ```
-https://ai-silo-check.vercel.app/?utm_source={threads|x|linkedin|creator|community}&utm_medium={post|reply|dm}&utm_campaign=d{일차}&utm_content={앵글}{번호}
+https://ai-silo-check.vercel.app/go/d{일차}-{앵글}{번호}?utm_source={threads|x|linkedin|creator|community}&utm_medium={post|reply|dm}&utm_campaign=d{일차}&utm_content={앵글}{번호}
 ```
-예: `utm_content=A1`. 페이지 안의 공유 버튼은 `utm_source=share`로 따로 잡힌다.
+예: `/go/d1-A1?…&utm_content=A1`.
+- **경로**(`/go/d1-A1`)는 Vercel 무료 플랜에서도 링크별로 셀 수 있게 하려고 넣었다. utm으로 나눠 보는 기능은 유료 플랜 기능이라는 지적이 있다(1차 출처 미확인).
+- 공유로 들어온 방문은 `/t/{유형}/` 경로로, 진단을 끝까지 한 사람은 `/result/{유형}` 경로로 잡힌다.
 
 ## 규칙 = 게이트
 초안이 규칙 하나라도 어기면 **Blocked**이고, Blocked 초안은 절대 게시하지 않는다.

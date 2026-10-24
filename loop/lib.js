@@ -33,7 +33,7 @@ function parseTaggedLink(url) {
     const u = new URL(url);
     const p = u.searchParams;
     const dup = ["utm_source", "utm_medium", "utm_campaign", "utm_content"].filter((k) => p.getAll(k).length > 1);
-    return { origin: u.origin, source: p.get("utm_source"), medium: p.get("utm_medium"), campaign: p.get("utm_campaign"), content: p.get("utm_content"), dup };
+    return { origin: u.origin, path: u.pathname, source: p.get("utm_source"), medium: p.get("utm_medium"), campaign: p.get("utm_campaign"), content: p.get("utm_content"), dup };
   } catch {
     return null;
   }
@@ -58,6 +58,7 @@ function gateMechanical(draft, cfg) {
     if (/[^\x21-\x7e]/.test(l)) { add("link-ascii", `non-ASCII characters inside link: ${l}`); continue; }
     const t = parseTaggedLink(l);
     if (!t || t.origin !== cfg.site) { add("link-origin", l); continue; }
+    if (t.path !== `/go/d${draft.day}-${t.content}`) add("link-path", `path ${t.path} should be /go/d${draft.day}-${t.content} (per-link counting works on every Vercel plan via the path)`);
     if (t.dup.length) add("utm-duplicate", `repeated ${t.dup.join(", ")}`);
     if (draft.taggedLink && l !== draft.taggedLink) add("link-mismatch", "link in text differs from Tagged link");
     if (t.source !== draft.channel) add("utm-source", `utm_source=${t.source} but channel=${draft.channel}`);

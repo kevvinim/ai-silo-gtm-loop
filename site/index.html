@@ -177,6 +177,7 @@ function result(){
   ["sh-x","sh-threads","sh-li"].forEach(function(id){$(id).onclick=function(){track("share",{via:id.slice(3)})}});
   var f=$("follow"); if(CONFIG.followUrl.indexOf("__")===0){f.style.display="none"}else{f.href=CONFIG.followUrl;f.onclick=function(){track("follow_click")}}
   show("s-result");track("quiz_done",{type:k,score:s});
+  try{window.va&&window.va("pageview",{path:"/result/"+k})}catch(e){} // completions = visitors to /result/* (works on the free plan)
 }
 function copy(t){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(function(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(e){}a.remove()}).finally(function(){var el=$("toast");el.classList.add("on");setTimeout(function(){el.classList.remove("on")},1600)})}
 </script>
